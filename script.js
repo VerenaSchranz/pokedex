@@ -18,7 +18,26 @@ async function pokedexHome() {
         `;
     }
 }
-async function loadPokemonSingle(index) {
+
+
+/* async function pokedexHome() {
+    // all Pokemons
+    
+    for (let i = 0; i < pokemonList.length; i++) {
+        let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+        let response = await fetch(url);
+        let responseAsJson = await response.json();
+        let pokemonList = responseAsJson['abilities']['ability']['name'];
+        let pokemonNumber = [pokemonList[i]];
+        document.getElementById('pokemon-cards').innerHTML += `
+        <div id="pokemon-card-${i}" class="pokemon-card"><h2>${pokemonNumber}</h2>
+        <img src=""/>
+        </div>
+        `;
+    }
+} */
+
+/* async function loadPokemonSingle(index) {
  // all Pokemons
 
  for (let index = 0; index < pokemonList.length; index++) {
@@ -34,7 +53,7 @@ async function loadPokemonSingle(index) {
      `;
  }
 }
-
+ */
 async function loadPokemon() {
     let url = 'https://pokeapi.co/api/v2/pokemon/charmander';
     let response = await fetch(url);
