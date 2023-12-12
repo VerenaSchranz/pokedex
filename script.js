@@ -3,14 +3,13 @@
 
 async function pokedexHome() {
     // all Pokemons
-    let url = 'https://pokeapi.co/api/v2/pokemon/?offset=20&limit=20'; 
-    let response = await fetch(url);
-    let responseAsJson = await response.json();
-    let pokemonList = responseAsJson['results'];
-
     
     for (let i = 0; i < pokemonList.length; i++) {
-        let pokemonNumber = [pokemonList[i]['name']];
+        let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+        let response = await fetch(url);
+        let responseAsJson = await response.json();
+        let pokemonList = responseAsJson['abilities']['ability']['name'];
+        let pokemonNumber = [pokemonList[i]];
         document.getElementById('pokemon-cards').innerHTML += `
         <div id="pokemon-card-${i}" class="pokemon-card"><h2>${pokemonNumber}</h2>
         <img src=""/>
