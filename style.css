@@ -1,44 +1,73 @@
 body {
   background-attachment: scroll;
-  background: url(img/bg.jpg);
+  background: url(img/bg.png);
   background-attachment: fixed;
   background-position: center;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   height: 100vh;
-  font-family: "Roboto", sans-serif;
+  font-family: "Open Sans", sans-serif;
 }
 
 .image-close:after {
   content: url("./images/back.svg");
   cursor: pointer;
-    width: 30px;
-    color: #fff;
-    position: absolute;
-    z-index: 3;
-    top: 20px;
-    left: 30px;
-  }
-  
-  .d-none {
-    display: none;
-  }
-  
-  .pokemon-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    width: 50%;
-    height: 70%;
+  width: 30px;
+  color: #fff;
+  position: absolute;
+  z-index: 3;
+  top: 20px;
+  left: 30px;
 }
+
+.popupflex {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40px;
+}
+.d-none {
+  display: none;
+}
+
+.ability {
+  width: 50%;
+  border-radius: 12px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(195 195 195);
+}
+
+.pokemon-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  width: 30vw;
+  background-color: rgba(248, 247, 216, 1);
+}
+
+.pokemon-popup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(./img/bg-popup.jpg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5; /* Adjust the opacity as needed */
+  z-index: -1; /* Place it behind the content */
+  border-radius: 10px; /* Match the border-radius of the container */
+}
+
 input {
   height: 40px;
-  /* border-radius: 3px; */
   font-family: "Roboto", sans-serif;
   border: 0px solid transparent;
   padding: 10px;
@@ -49,7 +78,6 @@ button {
   height: 40px;
   background-color: #afc3d1;
   width: auto;
-  /* border-radius: 3px; */
   font-size: 16px;
   font-family: "Roboto", sans-serif;
   border: 0px solid transparent;
@@ -63,12 +91,12 @@ button {
   margin-bottom: 50px;
 }
 .popup-image {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .popup-open {
-    overflow: hidden;
+  overflow: hidden;
 }
 .single-bg-card {
   width: 100vw;
@@ -78,6 +106,7 @@ button {
   z-index: 1;
   top: 0;
   right: 0;
+  cursor: pointer;
 }
 
 #pokedex {
@@ -89,8 +118,6 @@ button {
   position: relative;
   background-color: deeppink;
 }
-
-
 
 h1 {
   text-align: center;
@@ -109,19 +136,22 @@ h1 {
 
 .types {
   width: 50%;
-  background-color: #fb6c6c;
   border-radius: 12px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pokemon-image-little {
-    position: absolute;
-    right: -15px;
-    top: -30px;
-    max-height: 90px;
-    max-width: 100px;
-    background: white;
-    border-radius: 50%;
-    padding: 12px;
+  position: absolute;
+  right: -15px;
+  top: -30px;
+  max-height: 90px;
+  max-width: 100px;
+  background: white;
+  border-radius: 50%;
+  padding: 12px;
 }
 
 .pokemon-image {
@@ -150,7 +180,6 @@ h1 {
   justify-content: center;
   flex-wrap: wrap;
   position: absolute;
-
 }
 
 .info-container {
@@ -161,40 +190,42 @@ h1 {
   margin-top: -40px;
 }
 
-
 .btn-primary-popup {
   position: absolute;
   right: 10px;
   cursor: pointer;
 }
 
-.bgYellow{
+.bgYellow {
   background-color: rgba(255, 255, 0, 0.5);
 }
-.bgRed{
+.bgRed {
   background-color: rgba(255, 0, 0, 0.61);
 }
-.bgBlue{
+.bgBlue {
   background-color: rgba(0, 0, 255, 0.7);
 }
-.bgGreen{
+.bgGreen {
   background-color: rgba(0, 128, 0, 0.7);
 }
-.bgPurple{
+.bgPurple {
   background-color: rgba(128, 0, 128, 0.5);
 }
-.bgGray{
+.bgGray {
   background-color: rgba(128, 128, 128, 0.5);
 }
-.bgOrange{
+.bgOrange {
   background-color: rgba(255, 166, 0, 0.5);
 }
-.bgLiteGray{
+.bgLiteGray {
   background-color: rgba(211, 211, 211, 0.5);
 }
-.bgLiteRed{
+.bgLiteRed {
   background-color: rgba(255, 0, 0, 0.4);
 }
-.bgLiteGreen{
+.bgLiteGreen {
   background-color: rgba(0, 128, 0, 0.5);
+}
+.bgLitePurple {
+  background-color: #a890f0;
 }
