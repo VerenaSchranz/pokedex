@@ -11,6 +11,7 @@ function popupSingleCard(i, currentPokemonImageSrcLittle, capitalizedType, curre
           <h2>${capitalizedType}</h2>
     
           <img class="pokemon-image" src="${currentPokemonImageSrc}"/>
+          <div><h3>Type</h3><div>
           <div id="popup-pokemon-type" class="types-container">
             ${getTypesHtml(i)}
           </div>

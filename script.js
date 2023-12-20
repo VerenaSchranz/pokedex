@@ -1,28 +1,26 @@
 let pokemonMap = {};
-
+let allFetchedPokemon = [];
 pokemonOffSet = 0;
 
+
+
+
+// JavaScript
 async function searchPokemon() {
-  let search = document.getElementById("search").value.toLowerCase();
-  let pokemonCard = document.getElementById("pokemon-cards");
-  pokemonCard.innerHTML = "";
+    let search = document.getElementById("search").value.toLowerCase();
+    let pokemonCard = document.getElementById("pokemon-cards");
+    pokemonCard.innerHTML = "";
 
-  if (search.trim() === "") {
-    // if the search bar is empty, show all pokemon
-    for (let i = 0; i < allFetchedPokemon.length; i++) {
-      loadPokemon();
-    }
-  } else {
-    // searching
-    for (let i = 0; i < allFetchedPokemon.length; i++) {
-      let pokemonName = allFetchedPokemon[i];
+    for (let i = 1 + pokemonOffSet; i < 30 + pokemonOffSet; i++) {
+        let pokemonName = pokemonMap[i]["name"];
 
-      if (pokemonName.toLowerCase().includes(search)) {
-        loadPokemon(i);
-      }
+        if (pokemonName.toLowerCase().includes(search)) {
+            renderSinglePokemon(i);
+        }
     }
-  }
 }
+
+
 
 async function loadPokemon() {
   // Render each Pokemon
@@ -30,7 +28,7 @@ async function loadPokemon() {
     let singleUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
     let singleResponse = await fetch(singleUrl);
     let singleResponseAsJson = await singleResponse.json();
-    pokemonMap[i] = singleResponseAsJson; // Neuer part
+    pokemonMap[i] = singleResponseAsJson;
 
     let pokemonCards = document.getElementById("pokemon-cards");
     pokemonCards.innerHTML += renderSinglePokemon(i);
@@ -39,13 +37,12 @@ async function loadPokemon() {
 
 function renderSinglePokemon(i) {
   let currentPokemon = pokemonMap[i]["name"];
-  let currentPokemonImageSrc =
-    pokemonMap[i]["sprites"]["other"]["official-artwork"]["front_default"];
+  let currentPokemonImageSrc = pokemonMap[i]["sprites"]["other"]["official-artwork"]["front_default"];
   let currentPokemonImageSrcLittle = pokemonMap[i]["sprites"]["front_default"];
 
   capitalizedType =
     currentPokemon.charAt(0).toUpperCase() + currentPokemon.slice(1);
-
+    renderSinglePokemonCard(i, currentPokemonImageSrcLittle, capitalizedType, currentPokemonImageSrc);
   return `
     <div onclick="showPopup(${i})" class="pokemon-single-card" id="pokemon-single-card-${i}">
         <img class="pokemon-image-little" src="${currentPokemonImageSrcLittle}"/>
@@ -61,10 +58,7 @@ function getTypesHtml(i) {
 
   for (let j = 0; j < pokemonMap[i]["types"].length; j++) {
     let currentPokemonType = pokemonMap[i]["types"][j]["type"]["name"];
-    /*  templateText += `
-            <div id="types" class="types">${currentPokemonType}</div>
-        `; */
-    /*   setTypeColor(currentPokemonType); */
+
     if (currentPokemonType === "grass") {
       templateText += `<div class="types bgGreen">${currentPokemonType}</div>`;
     }

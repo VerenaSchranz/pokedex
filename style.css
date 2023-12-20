@@ -47,7 +47,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 1000;
-  width: 30vw;
+  min-width: 30vw;
   background-color: rgba(248, 247, 216, 1);
 }
 
@@ -162,7 +162,7 @@ h1 {
 
 .pokemon-single-card {
   position: relative;
-  width: 300px;
+  max-width: 300px;
   background-color: #f4f4f4;
   border-radius: 16px;
   padding: 30px;
@@ -228,4 +228,17 @@ h1 {
 }
 .bgLitePurple {
   background-color: #a890f0;
+}
+
+@media (max-width: 800px) {
+  .pokemon-image-little {
+    top: -50px;
+  }
+  .pokemon-popup {
+    padding-top: 70px;
+    width: 70vw;
+  }
+  .pokemon-single-card {
+    margin-top: 70px;
+  }
 }
