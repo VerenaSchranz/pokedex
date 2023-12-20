@@ -8,6 +8,10 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+h3 {
+  margin: -1px;
+  padding: 20px;
+}
 .image-close:after {
   content: url("./images/back.svg");
   cursor: pointer;
@@ -18,11 +22,43 @@ body {
   top: 20px;
   left: 30px;
 }
+.tab-btns {
+  display: flex;
+}
+
+progress#progressBar:before {
+  display: inline;
+  content: "" attr(value);
+  font-family: "Open Sans", sans-serif;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+}
+
+progress#progressBar {
+  height: 40px;
+  width: 90%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+}
+.stats {
+  width: 90%;
+  text-align: left;
+}
+.tab-active {
+  background-color: #f2f2f2;
+}
 
 .popupflex {
   display: flex;
   justify-content: flex-start;
   gap: 40px;
+}
+.progress-bar {
+  display: flex;
+  flex-direction: column;
 }
 .d-none {
   display: none;
@@ -37,7 +73,14 @@ body {
   align-items: center;
   background-color: rgb(195 195 195);
 }
-
+.pokemon-tab-info {
+  background-color: #f2f2f2;
+  top: 0;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  margin-top: -1;
+  padding: 5%;
+}
 .pokemon-popup {
   position: fixed;
   top: 50%;
@@ -111,12 +154,10 @@ button {
 
 #pokedex {
   min-height: 50vh;
-  background-color: #fb6c6c;
   color: #fff;
   display: flex;
   padding: 24px;
   position: relative;
-  background-color: deeppink;
 }
 
 h1 {
@@ -194,6 +235,12 @@ h1 {
   position: absolute;
   right: 10px;
   cursor: pointer;
+}
+.btn-primary {
+  cursor: pointer;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  width: 50%;
 }
 
 .bgYellow {
