@@ -48,48 +48,37 @@ function renderSinglePokemon(i) {
         <img class="pokemon-image-little" src="${currentPokemonImageSrcLittle}"/>
         <h2>${capitalizedType}</h2>
         <img class="pokemon-image" src="${currentPokemonImageSrc}"/>
-        <div id="types" class="types-container">${getTypesHtml(i)}</div>
+        <div id="types" class="types-container types-desc-wrapper">${getTypesHtml(i)}</div>
     </div>
     `;
 }
 
 function getTypesHtml(i) {
+  const typeColors = {
+    grass: 'bgGreen',
+    fire: 'bgRed',
+    water: 'bgBlue',
+    bug: 'bgLiteGreen',
+    normal: 'bgGray',
+    poison: 'bgPurple',
+    flying: 'bgLitePurple',
+    electric: 'bgYellow',
+    ground: 'bgOrange',
+  };
+
   let templateText = "";
 
   for (let j = 0; j < pokemonMap[i]["types"].length; j++) {
     let currentPokemonType = pokemonMap[i]["types"][j]["type"]["name"];
 
-    if (currentPokemonType === "grass") {
-      templateText += `<div class="types bgGreen">${currentPokemonType}</div>`;
-    }
-    if (currentPokemonType === "fire") {
-      templateText += `<div class="types bgRed"{>${currentPokemonType}</div>`;
-    }
-    if (currentPokemonType === "water") {
-      templateText += `<div class="types bgBlue">${currentPokemonType}</div>`;
-    }
-    if (currentPokemonType === "bug") {
-      templateText += `<div class="types bgLiteGreen">${currentPokemonType}</div>`;
-    }
-    if (currentPokemonType === "normal") {
-      templateText += `<div class="types bgGray">${currentPokemonType}</div>`;
-    }
-    if (currentPokemonType === "poison") {
-      templateText += `<div class="types bgPurple">${currentPokemonType}</div>`;
-    }
-    if (currentPokemonType === "flying") {
-      templateText += `<div class="types bgLitePurple">${currentPokemonType}</div>`;
-    }
-    if (currentPokemonType === "electric") {
-      templateText += `<div class="types bgYellow">${currentPokemonType}</div>`;
-    }
-    if (currentPokemonType === "ground") {
-      templateText += `<div class="types bgOrange">${currentPokemonType}</div>`;
+    if (typeColors[currentPokemonType]) {
+      templateText += `<div class="types popupflex ${typeColors[currentPokemonType]}">${currentPokemonType}</div>`;
     }
   }
 
   return templateText;
 }
+
 function getStats(i) {
     let templateText = "";
 
@@ -111,11 +100,8 @@ function getAbility(i) {
   for (let k = 0; k < pokemonMap[i]["abilities"].length; k++) {
     let currentPokemonAbility =
       pokemonMap[i]["abilities"][k]["ability"]["name"];
-    /*  templateText += `
-            <div id="types" class="types">${currentPokemonType}</div>
-        `; */
-    /*   setTypeColor(currentPokemonType); */
-    templateText += `<div class="ability">${currentPokemonAbility}</div>`;
+
+    templateText += `<div class="ability popupflex">${currentPokemonAbility}</div>`;
   }
 
   return templateText;
@@ -155,3 +141,4 @@ function closePopup() {
   document.getElementById("container").classList.remove("popup-open");
   document.getElementById("single-card").classList.remove("single-bg-card");
 }
+

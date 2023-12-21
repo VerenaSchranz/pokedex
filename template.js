@@ -11,17 +11,16 @@ function popupSingleCard(i, currentPokemonImageSrcLittle, capitalizedType, curre
           <h2>${capitalizedType}</h2>
           <img class="pokemon-image" src="${currentPokemonImageSrc}"/>
           <div class="tab-btns">
-          <button id="tab1" class="btn-primary tab-active" onclick="getTabInfo(${i})">Type and Abilities</button>
+          <button id="tab1" class="btn-primary tab-active" onclick="getTabInfo(${i})">Type/Abilities</button>
         <button id="tab2" class="btn-primary" onclick="getTabStats(${i})">Open Stats</button>
         </div>
           <div id="pokemon-tab-info" class="pokemon-tab-info">
           <h3>Type</h3>
-          <div id="popup-pokemon-type" class="types-container">
+          <div id="popup-pokemon-type" class="popupflex types-container types-popup-wrapper">
             ${getTypesHtml(i)}
           </div>
- 
           <h3>Abilites</h3>
-          <div class="popupflex">
+          <div class="popupflex types-container">
           ${getAbility(i)}
           </div>
           </div>
@@ -43,7 +42,7 @@ function getTabInfo(i) {
           </div>
  
           <h3>Abilites</h3>
-          <div class="popupflex">
+          <div class="popupflex types-container">
           ${getAbility(i)}
           </div>
     `;
@@ -66,7 +65,7 @@ function renderSinglePokemonCard(i, currentPokemonImageSrcLittle, capitalizedTyp
         <img class="pokemon-image-little" src="${currentPokemonImageSrcLittle}"/>
         <h2>${capitalizedType}</h2>
         <img class="pokemon-image" src="${currentPokemonImageSrc}"/>
-        <div id="types" class="types-container">${getTypesHtml(i)}</div>
+        <div id="types" class=" types-container types-desc-wrapper">${getTypesHtml(i)}</div>
     </div>
     `;
 }
