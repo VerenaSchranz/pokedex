@@ -16,7 +16,6 @@ body {
 }
 
 nav {
-  /* background-image: url(./img/pokeball-pattern.webp); */
   background-color: #434343;
   width: 100%;
   padding: 30px 0px;
@@ -67,7 +66,7 @@ progress#progressBar:before {
 
 progress#progressBar {
   height: 40px;
-  width: 90%;
+  width: 100%;
   display: flex;
   position: relative;
   align-items: center;
@@ -187,7 +186,7 @@ button {
   border-radius: 50px;
   background-color: #fff;
   overflow: hidden;
-  max-width: 400px;
+  max-width: 300px;
   box-shadow: 2px 1px 5px 1px rgba(0, 0, 0, 0.273);
   
   }
