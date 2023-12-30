@@ -11,9 +11,16 @@ body {
   font-size: 40px;
 }
 
-.pokemon-mobile {
+img.pokemon-mobile-close {
   display: none;
 }
+
+img.pokemon-mobile-image {
+  display: block;
+  width: 90px;
+  height: auto;
+}
+
 .desktop-hide {
   display: none;
 }
@@ -294,7 +301,7 @@ h1 {
 }
 
 .pokemon-image-little img {
-  width: 30px;
+  width: 90px;
   height: auto;
 }
 .pokemon-image {
@@ -414,10 +421,20 @@ h1 {
 
   .pokemon-image-little {
     top: -12px;
-}
+  }
+  .pokemon-image-little img {
+    display: none;
+  }
+  img.pokemon-mobile-close {
+    display: block;
+  }
 
-.desktop-hide {
-  display: block;
-}
+  .pokemon-image-little img {
+    width: 40px;
+    height: auto;
+  }
 
+  .desktop-hide {
+    display: block;
+  }
 }

@@ -12,7 +12,7 @@ function popupSingleCard(
           <img class="desktop-hide" src="${currentPokemonImageSrcLittle}"/>
           <div class="pokemon-image-little">
           <img onclick ="closePopup()" class="pokemon-mobile-close" src="./img/close.png"/>
-          <img class="pokemon-mobile" src="${currentPokemonImageSrcLittle}"/>
+          <img class="pokemon-mobile-image" src="${currentPokemonImageSrcLittle}"/>
           </div>          
           <h2 class="h2-popup">${capitalizedType}</h2>
           <img class="pokemon-image pokemon-image-popup" src="${currentPokemonImageSrc}"/>
