@@ -11,10 +11,11 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto&display=swap"
       rel="stylesheet" />
+    <script src="pokemonarray.js"></script>
     <script src="template.js"></script>
     <script src="script.js"></script>
   </head>
-  <body onload="loadPokemon()">
+  <body onload="loadAllPokemon()">
     <nav>
       <div class="nav-wrapper main">
         <div class="logo-wrapper">
@@ -25,11 +26,8 @@
 
         <i class="search-icon fas fa-search"></i>
       
-      <input onkeyup="searchPokemon()"
-      type="text" id="search" placeholder="Search Pokemon">
-      <button onclick="searchPokemon()" id="search-button">Search</button>
-      
-      
+        <input type="text" id="search" placeholder="Search Pokémon...">
+
       </div>
 
       </div>
