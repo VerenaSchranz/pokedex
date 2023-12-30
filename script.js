@@ -96,30 +96,13 @@ function getTypesHtml(i) {
   return templateText;
 }
 
-function getStats(i) {
-  let templateText = "";
-
-  for (let l = 0; l < pokemonMap[i]["stats"].length; l++) {
-    let currentPokemonValue = pokemonMap[i]["stats"][l]["base_stat"];
-    let currentPokemonName = pokemonMap[i]["stats"][l]["stat"]["name"];
-    templateText += `
-        <div class="stats">${currentPokemonName}</div>
-        <progress id="progressBar" max="100" value="${currentPokemonValue}"><span></span></progress>
-
-        `;
-  }
-  return templateText;
-}
-function getAbility(i) {
-  let templateText = "";
-
-  for (let k = 0; k < pokemonMap[i]["abilities"].length; k++) {
-    let currentPokemonAbility =
-      pokemonMap[i]["abilities"][k]["ability"]["name"];
-
-    templateText += `<div class="ability popupflex">${currentPokemonAbility}</div>`;
-  }
-  return templateText;
+async function loadPokemon() {
+    let url = 'https://pokeapi.co/api/v2/pokemon/charmander';
+    let response = await fetch(url);
+    let currentPokemon = await response.json();
+    let currentPokemonImage = currentPokemon['sprites']['other']['dream_world']['front_default'];
+    console.log('Loaded Pokemon', currentPokemon);
+    renderPokemonInfo(currentPokemon, currentPokemonImage);
 }
 
 function showPopup(i) {
