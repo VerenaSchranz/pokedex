@@ -3,10 +3,29 @@ let allFetchedPokemon = [];
 let allSearchedPokemon = [];
 pokemonOffSet = 0;
 
+// Add an event listener to the search input
 document.addEventListener("DOMContentLoaded", function () {
-  // Add an event listener to the search input
   document.getElementById("search").addEventListener("input", filterPokemon);
 });
+
+
+window.addEventListener('load', function() {
+  // Verstecke das Ladeelement
+  let loadingElement = document.getElementById('loading');
+  if (loadingElement) {
+    loadingElement.style.display = 'none';
+  }
+});
+
+
+
+/* window.addEventListener('load', function() {
+  let loadingElement = document.getElementById('loading');
+  let pokemonCards = document.getElementById('pokemon-cards');
+  if (pokemonCards) {
+    loadingElement.style.display = 'none'; 
+  }
+}); */
 
 async function filterPokemon() {
   let searchTerm = document.getElementById("search").value.toLowerCase();
@@ -140,7 +159,7 @@ function showPopup(i) {
     currentPokemonWeight
   );
   document.body.innerHTML += popupContent;
-
+  document.getElementById("container").classList.add("container-popup-fixed");
   document.getElementById("container").classList.add("popup-open");
   document.getElementById("single-card").classList.add("single-bg-card");
   document.getElementById("single-card").addEventListener("click", closePopup);
@@ -151,6 +170,8 @@ function closePopup() {
   let popupContainer = document.getElementById("popup-container");
   if (popupContainer) {
     popupContainer.remove();
+    document.getElementById("container").classList.remove("container-popup-fixed");
+
   }
 
   document.getElementById("container").classList.remove("popup-open");
