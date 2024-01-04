@@ -3,7 +3,7 @@ let allFetchedPokemon = [];
 let allPokemon = []
 let allSearchedPokemon = [];
 pokemonOffSet = 1;
-let pokemonNumber = 4;
+let pokemonNumber = 15;
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("search").addEventListener("input", filterPokemon);
 });
@@ -36,7 +36,7 @@ async function filterPokemon() {
     let currentPokemon = allFetchedPokemon[i];
 
     if (currentPokemon.toLowerCase().includes(searchTerm)) {
-      let index = i + 1 + pokemonOffSet;
+      let index = i + pokemonOffSet;
       let singleUrl = `https://pokeapi.co/api/v2/pokemon/${index}`;
       let singleResponse = await fetch(singleUrl);
       let singleResponseAsJson = await singleResponse.json();
@@ -51,9 +51,9 @@ async function filterPokemon() {
   }
 }
 
+// Render each Pokemon
 async function loadAllPokemon() {
-  // Render each Pokemon
-  for (let i = 1 + pokemonOffSet; i < pokemonNumber + pokemonOffSet; i++) {
+  for (let i = pokemonOffSet; i < pokemonNumber + pokemonOffSet; i++) {
     let singleUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
     let singleResponse = await fetch(singleUrl);
     let singleResponseAsJson = await singleResponse.json();
@@ -159,8 +159,8 @@ function showPopup(i) {
   document.getElementById("single-card").addEventListener("click", closePopup);
 }
 
+// Remove the popup container
 function closePopup() {
-  // Remove the popup container
   let popupContainer = document.getElementById("popup-container");
   if (popupContainer) {
     popupContainer.remove();
@@ -171,8 +171,7 @@ function closePopup() {
   document.getElementById("single-card").classList.remove("single-bg-card");
 }
 
-/* function loadMorePokemon() {
-  pokemonNumber += 1; 
-  pokemonOffSet += 1;
+function loadMorePokemon() {
+  pokemonOffSet += pokemonNumber;
   loadAllPokemon();
-} */
+}
