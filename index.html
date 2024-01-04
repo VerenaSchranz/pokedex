@@ -11,11 +11,10 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto&display=swap"
       rel="stylesheet" />
-    <script src="pokemonarray.js"></script>
     <script src="template.js"></script>
     <script src="script.js"></script>
   </head>
-  <body onload="loadAllPokemon()" class="body-popup-fixed">
+  <body onload="loadAllPokemon()">
     <nav>
       <div class="nav-wrapper main">
         <div class="logo-wrapper">
@@ -35,7 +34,9 @@
  
       </div>
       <div id="single-card"></div>
-      <div id="pokemon-cards" class="pokemon-cards main"></div>
+      <div id="pokemon-cards" class="pokemon-cards main">
+      </div>
+      <button onclick="loadMorePokemon()" id="morePokemon">Load more</button>
     </div>
   </body>
 </html>

@@ -1,16 +1,15 @@
 let pokemonMap = {};
 let allFetchedPokemon = [];
+let allPokemon = []
 let allSearchedPokemon = [];
-pokemonOffSet = 0;
-
-// Add an event listener to the search input
+pokemonOffSet = 1;
+let pokemonNumber = 4;
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("search").addEventListener("input", filterPokemon);
 });
 
 
 window.addEventListener('load', function() {
-  // Verstecke das Ladeelement
   let loadingElement = document.getElementById('loading');
   if (loadingElement) {
     loadingElement.style.display = 'none';
@@ -29,16 +28,12 @@ window.addEventListener('load', function() {
 
 async function filterPokemon() {
   let searchTerm = document.getElementById("search").value.toLowerCase();
-
-  // Clear existing Pokemon cards
   document.getElementById("pokemon-cards").innerHTML = "";
 
-  // Clear previous searched data
   allSearchedPokemon = [];
 
-  // Filter Pokemon based on the search term
-  for (let i = 0; i < allPokemon.length; i++) {
-    let currentPokemon = allPokemon[i].name;
+  for (let i = 0; i < allFetchedPokemon.length; i++) {
+    let currentPokemon = allFetchedPokemon[i];
 
     if (currentPokemon.toLowerCase().includes(searchTerm)) {
       let index = i + 1 + pokemonOffSet;
@@ -47,7 +42,6 @@ async function filterPokemon() {
       let singleResponseAsJson = await singleResponse.json();
       pokemonMap[index] = singleResponseAsJson;
 
-      // Check if the Pokemon name is already in allSearchedPokemon
       if (!allSearchedPokemon.includes(singleResponseAsJson.name)) {
         allSearchedPokemon.push(singleResponseAsJson.name);
         document.getElementById("pokemon-cards").innerHTML +=
@@ -59,7 +53,7 @@ async function filterPokemon() {
 
 async function loadAllPokemon() {
   // Render each Pokemon
-  for (let i = 1 + pokemonOffSet; i < 30 + pokemonOffSet; i++) {
+  for (let i = 1 + pokemonOffSet; i < pokemonNumber + pokemonOffSet; i++) {
     let singleUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
     let singleResponse = await fetch(singleUrl);
     let singleResponseAsJson = await singleResponse.json();
@@ -67,7 +61,9 @@ async function loadAllPokemon() {
     currentPokemon = singleResponseAsJson["name"];
     allFetchedPokemon.push(currentPokemon);
     let pokemonCards = document.getElementById("pokemon-cards");
+    
     pokemonCards.innerHTML += renderSinglePokemon(i);
+
   }
 }
 
@@ -84,9 +80,7 @@ function renderSinglePokemon(i) {
         <img class="pokemon-image-little" src="${currentPokemonImageSrcLittle}"/>
         <h2>${capitalizedType}</h2>
         <img class="pokemon-image" src="${currentPokemonImageSrc}"/>
-        <div id="types" class="types-container types-desc-wrapper">${getTypesHtml(
-          i
-        )}</div>
+        <div id="types" class="types-container types-desc-wrapper">${getTypesHtml(i)}</div>
     </div>
     `;
 }
@@ -171,9 +165,14 @@ function closePopup() {
   if (popupContainer) {
     popupContainer.remove();
     document.getElementById("container").classList.remove("container-popup-fixed");
-
   }
 
   document.getElementById("container").classList.remove("popup-open");
   document.getElementById("single-card").classList.remove("single-bg-card");
 }
+
+/* function loadMorePokemon() {
+  pokemonNumber += 1; 
+  pokemonOffSet += 1;
+  loadAllPokemon();
+} */
