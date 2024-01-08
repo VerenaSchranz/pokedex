@@ -4,7 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokédex</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="icon" href="./img/favicon.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +14,7 @@
     <script src="template.js"></script>
     <script src="script.js"></script>
   </head>
-  <body onload="loadAllPokemon()">
+  <body onload="init()">
     <nav>
       <div class="nav-wrapper main">
         <div class="logo-wrapper">
@@ -29,15 +29,19 @@
       </div>
     </nav>
     <div id="container">
-      <div id="loading">
+      <div id="loading" class="loading-bg">
         <div id="loader" class="loader"></div>
  
       </div>
       <div id="single-card"></div>
       <div id="pokemon-cards" class="pokemon-cards main">
       </div>
+      <div id="load-more" class="wrapper-load-more">
+        <div id="loader-more-spinner" class="loader-more-spinner"></div>
+
+      </div>
       <div class="wrapper-load-more">
-        <button onclick="loadMorePokemon()" id="morePokemon" class="btn-load-more"><img src="./img/loadmore.png"/></button>
+        <button onclick="loadMorePokemon()" id="loadMorePokemon" class="btn-load-more"><img src="./img/loadmore.png"/></button>
       </div>
     </div>
   </body>

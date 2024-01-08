@@ -1,3 +1,15 @@
+function generatePokemonCardHtml(i, currentPokemonImageSrcLittle, capitalizedType, currentPokemonImageSrc) {
+  return `
+    <div onclick="showPopup(${i})" class="pokemon-single-card" id="pokemon-single-card-${i}">
+        <img class="pokemon-image-little" src="${currentPokemonImageSrcLittle}"/>
+        <h2>${capitalizedType}</h2>
+        <img class="pokemon-image" src="${currentPokemonImageSrc}"/>
+        <div id="types" class="types-container types-desc-wrapper">${getTypesHtml(i)}</div>
+    </div>
+  `;
+}
+
+
 function popupSingleCard(
   i,
   currentPokemonImageSrcLittle,

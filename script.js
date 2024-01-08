@@ -8,30 +8,39 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("search").addEventListener("input", filterPokemon);
 });
 
-
-window.addEventListener('load', function() {
-  let loadingElement = document.getElementById('loading');
-  if (loadingElement) {
-    loadingElement.style.display = 'none';
-  }
-});
+async function init() {
+  loader();
+  await loadAllPokemon();
+  loaderEnd();
+}
 
 
+function loader() {
+  let pokedex = document.getElementById("pokemon-cards");
+  pokedex.classList.add("d-none");
+}
 
-/* window.addEventListener('load', function() {
-  let loadingElement = document.getElementById('loading');
-  let pokemonCards = document.getElementById('pokemon-cards');
-  if (pokemonCards) {
-    loadingElement.style.display = 'none'; 
-  }
-}); */
+function loaderEnd() {
+  let pokedex = document.getElementById("pokemon-cards");
+  let loaderSpinner = document.getElementById("loader");
+  let loadingBg = document.getElementById("loading");
+  // let loadMore = document.getElementById("load-more");
+  loaderSpinner.classList.add("d-none");
+  loadingBg.classList.add("d-none");
+
+  pokedex.classList.remove("d-none");
+  document.getElementById("load-more").classList.remove("d-none");
+}
 
 async function filterPokemon() {
   let searchTerm = document.getElementById("search").value.toLowerCase();
   document.getElementById("pokemon-cards").innerHTML = "";
 
   allSearchedPokemon = [];
+  filterPokemonFetchPart(searchTerm)
+}
 
+async function filterPokemonFetchPart(searchTerm) {
   for (let i = 0; i < allFetchedPokemon.length; i++) {
     let currentPokemon = allFetchedPokemon[i];
 
@@ -47,9 +56,11 @@ async function filterPokemon() {
         document.getElementById("pokemon-cards").innerHTML +=
           renderSinglePokemon(index);
       }
+
     }
   }
 }
+
 
 // Render each Pokemon
 async function loadAllPokemon() {
@@ -63,26 +74,17 @@ async function loadAllPokemon() {
     let pokemonCards = document.getElementById("pokemon-cards");
     
     pokemonCards.innerHTML += renderSinglePokemon(i);
-
   }
 }
 
 function renderSinglePokemon(i) {
   let currentPokemon = pokemonMap[i]["name"];
-  let currentPokemonImageSrc =
-    pokemonMap[i]["sprites"]["other"]["official-artwork"]["front_default"];
+  let currentPokemonImageSrc = pokemonMap[i]["sprites"]["other"]["official-artwork"]["front_default"];
   let currentPokemonImageSrcLittle = pokemonMap[i]["sprites"]["front_default"];
 
-  capitalizedType =
-    currentPokemon.charAt(0).toUpperCase() + currentPokemon.slice(1);
-  return `
-    <div onclick="showPopup(${i})" class="pokemon-single-card" id="pokemon-single-card-${i}">
-        <img class="pokemon-image-little" src="${currentPokemonImageSrcLittle}"/>
-        <h2>${capitalizedType}</h2>
-        <img class="pokemon-image" src="${currentPokemonImageSrc}"/>
-        <div id="types" class="types-container types-desc-wrapper">${getTypesHtml(i)}</div>
-    </div>
-    `;
+  capitalizedType = currentPokemon.charAt(0).toUpperCase() + currentPokemon.slice(1);
+
+  return generatePokemonCardHtml(i, currentPokemonImageSrcLittle, capitalizedType, currentPokemonImageSrc);
 }
 
 function getTypesHtml(i) {
@@ -123,6 +125,8 @@ function getStats(i) {
   }
   return templateText;
 }
+
+
 function getAbility(i) {
   let templateText = "";
 
@@ -171,7 +175,21 @@ function closePopup() {
   document.getElementById("single-card").classList.remove("single-bg-card");
 }
 
-function loadMorePokemon() {
+async function loadMorePokemon() {
+  let loaderSpinner = document.getElementById("loader-more-spinner");
+  let loadMore = document.getElementById("load-more");
+  loaderSpinner.classList.remove("d-none");
+  loadMore.classList.remove("d-none");
+
   pokemonOffSet += pokemonNumber;
   loadAllPokemon();
+  loadMorePokemonEnd();
+  // filterPokemon();
+}
+
+function loadMorePokemonEnd() {
+  let loaderSpinner = document.getElementById("loader-more-spinner");
+  let loadMore = document.getElementById("load-more");
+  loaderSpinner.classList.add("d-none");
+  loadMore.classList.add("d-none");
 }
