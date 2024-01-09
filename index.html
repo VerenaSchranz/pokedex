@@ -24,7 +24,7 @@
         <div id="search-wrapper">
           <i class="search-icon fas fa-search"></i>
 
-          <input type="text" id="search" placeholder="Search Pokémon..." />
+          <input onkeyup="filterPokemon()" type="text" id="search" placeholder="Search Pokémon..." />
         </div>
       </div>
     </nav>
@@ -36,13 +36,13 @@
       <div id="single-card"></div>
       <div id="pokemon-cards" class="pokemon-cards main">
       </div>
-      <div id="load-more" class="wrapper-load-more">
-        <div id="loader-more-spinner" class="loader-more-spinner"></div>
+      <div id="load-more" class="wrapper-load-more load-more d-none">
+        <div id="loader-more-spinner" class="loader-more-spinner d-none"></div>
 
       </div>
       <div class="wrapper-load-more">
-        <button onclick="loadMorePokemon()" id="loadMorePokemon" class="btn-load-more"><img src="./img/loadmore.png"/></button>
-      </div>
+      <button onclick="loadMorePokemon()" id="loadMorePokemon" class="btn-load-more"><img src="./img/loadmore.png"/></button>
+    </div>
     </div>
   </body>
 </html>

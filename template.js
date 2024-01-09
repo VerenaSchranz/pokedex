@@ -1,10 +1,14 @@
-function generatePokemonCardHtml(i, currentPokemonImageSrcLittle, capitalizedType, currentPokemonImageSrc) {
+function generatePokemonCardHtml(
+  i, 
+  currentPokemonImageSrcLittle, 
+  capitalizedType, 
+  currentPokemonImageSrc) {
   return `
     <div onclick="showPopup(${i})" class="pokemon-single-card" id="pokemon-single-card-${i}">
         <img class="pokemon-image-little" src="${currentPokemonImageSrcLittle}"/>
         <h2>${capitalizedType}</h2>
         <img class="pokemon-image" src="${currentPokemonImageSrc}"/>
-        <div id="types" class="types-container types-desc-wrapper">${getTypesHtml(i)}</div>
+        <div id="type" class="types-container types-desc-wrapper">${getTypesHtml(i)}</div>
     </div>
   `;
 }
@@ -38,8 +42,8 @@ function popupSingleCard(
               <p><b>Weight</b>: ${currentPokemonWeight}</p>
             </div>
           <h3>Type</h3>
-          <div id="popup-pokemon-type" class="popupflex types-container">
-            ${getTypesHtml(i)}
+          <div class="popupflex types-container">
+          ${getTypesHtml(i)}
           </div>
           <h3>Abilites</h3>
           <div class="popupflex types-container">
