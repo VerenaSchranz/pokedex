@@ -1,18 +1,39 @@
 function generatePokemonCardHtml(
-  i, 
-  currentPokemonImageSrcLittle, 
-  capitalizedType, 
-  currentPokemonImageSrc) {
+  i,
+  currentPokemonImageSrcLittle,
+  capitalizedType,
+  currentPokemonImageSrc
+) {
   return `
     <div onclick="showPopup(${i})" class="pokemon-single-card" id="pokemon-single-card-${i}">
         <img class="pokemon-image-little" src="${currentPokemonImageSrcLittle}"/>
         <h2>${capitalizedType}</h2>
         <img class="pokemon-image" src="${currentPokemonImageSrc}"/>
-        <div id="type" class="types-container types-desc-wrapper">${getTypesHtml(i)}</div>
+        <div id="type" class="types-container types-desc-wrapper">${getTypesHtml(
+          i
+        )}</div>
     </div>
+
   `;
 }
 
+function generateSearchedPokemonCardHtml(
+  i,
+  currentPokemonImageSrcLittle,
+  capitalizedType,
+  currentPokemonImageSrc
+) {
+  return `
+    <div onclick="showSearchedPopup(${i})" class="pokemon-single-card" id="pokemon-single-card-${i}">
+        <img class="pokemon-image-little" src="${currentPokemonImageSrcLittle}"/>
+        <h2>${capitalizedType}</h2>
+        <img class="pokemon-image" src="${currentPokemonImageSrc}"/>
+        <div id="type" class="types-container types-desc-wrapper">${getTypesHtmlSearched(
+          i
+        )}</div>
+    </div>
+  `;
+}
 
 function popupSingleCard(
   i,
@@ -23,14 +44,18 @@ function popupSingleCard(
   currentPokemonWeight
 ) {
   return `
-      <div id="popup-container" class="single-card">
+  
+      <div id="popup-container" class="single-card popup-container">
         <div id="pokemon-popup" class="pokemon-popup">
-          <img class="desktop-hide" src="${currentPokemonImageSrcLittle}"/>
           <div class="pokemon-image-little">
           <img onclick ="closePopup()" class="pokemon-mobile-close" src="./img/close.png"/>
           </div>          
           <h2 class="h2-popup">${capitalizedType}</h2>
-          <img class="pokemon-image pokemon-image-popup" src="${currentPokemonImageSrc}"/>
+          <div class="flex-popup-wrapper">
+          <img onclick="previous(${i})" id="previous-end" class="arrow" src="./img/left.svg">
+            <img class="pokemon-image pokemon-image-popup" src="${currentPokemonImageSrc}"/>
+          <img onclick="next(${i})" id="next-end" class="arrow" src="./img/right.svg">
+        </div>
           <div class="tab-btns">
           <button id="tab1" class="btn-primary tab-active" onclick="getTabInfo(${i}, ${currentPokemonHeight}, ${currentPokemonWeight})">Type/Abilities</button>
         <button id="tab2" class="btn-primary" onclick="getTabStats(${i})">Open Stats</button>
@@ -52,7 +77,9 @@ function popupSingleCard(
           </div>
           </div>
         </div>
+
       </div>
+
     `;
 }
 
